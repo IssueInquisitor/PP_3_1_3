@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -30,13 +30,13 @@ public class User implements UserDetails {
     @JoinTable(name = "users_roles",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
-    private List<Role> roles;
+    private Set<Role> roles;
 
     public User() {
     }
 
     public User(Long id, String firstname, String lastname, Byte age,
-                String username, String password, List<Role> roles) {
+                String username, String password, Set<Role> roles) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -94,7 +94,7 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
@@ -102,14 +102,14 @@ public class User implements UserDetails {
         roles.add(role);
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
     public String getRoleName() {
         StringBuilder result = new StringBuilder();
-        List<Role> list = getRoles();
-        for (Role role : list) {
+        Set<Role> roleSet = getRoles();
+        for (Role role : roleSet) {
             result.append(role.getName().replace("ROLE_", " ")).append(" ");
         }
         return result.toString();
