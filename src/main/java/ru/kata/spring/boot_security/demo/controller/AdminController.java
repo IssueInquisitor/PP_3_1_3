@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.User;
-import ru.kata.spring.boot_security.demo.service.RoleServiceImp;
-import ru.kata.spring.boot_security.demo.service.UserServiceImp;
+import ru.kata.spring.boot_security.demo.service.RoleService;
+import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.security.Principal;
 
@@ -14,16 +14,16 @@ import java.security.Principal;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private UserServiceImp userService;
-    private RoleServiceImp roleService;
+    private UserService userService;
+    private RoleService roleService;
 
     @Autowired
-    public void setUserService(UserServiceImp userService) {
+    public void setUserService(UserService userService) {
         this.userService = userService;
     }
 
     @Autowired
-    public void setRoleService(RoleServiceImp roleService) {
+    public void setRoleService(RoleService roleService) {
         this.roleService = roleService;
     }
 
